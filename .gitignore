@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.marimo/
+__marimo__/
+.pytest_cache/
+.ruff_cache/
+.venv/
+dist/

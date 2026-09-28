@@ -8,7 +8,7 @@
 
 import marimo
 
-__generated_with = "0.24.2"
+__generated_with = "0.25.0"
 app = marimo.App(width="medium")
 
 with app.setup:
@@ -269,7 +269,7 @@ def _():
 
 @app.cell
 def _():
-    n_input = mo.ui.number(start=1, stop=1000, step=1, value=15, label="n")
+    n_input = mo.ui.number(start=1, stop=1000, step=1, value=2, label="n")
     n_input
     return (n_input,)
 
