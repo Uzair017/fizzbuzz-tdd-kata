@@ -6,7 +6,7 @@ app = marimo.App(width="medium")
 
 @app.function
 def fizzbuzz(n: int) -> str:
-    
+
     if not isinstance(n, int) or n <= 0:
         raise ValueError("fizzbuzz expects a strictly positive integer")
 

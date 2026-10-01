@@ -24,8 +24,20 @@ jobs:
       - name: Install dependencies
         run: uv sync --all-groups
 
-      - name: Run Ruff
-        run: uv run ruff check src tests
+#changing this below one to the code even below it as part of step8(3) requirement
+      # - name: Run Ruff
+      #   run: uv run ruff check src tests
 
-      - name: Run tests
-        run: uv run pytest -v
+      # - name: Run tests
+      #   run: uv run pytest -v
+      - name: Check formatting
+        run: uv run ruff format --check .
+
+      - name: Lint
+        run: uv run ruff check .
+
+      - name: Type check
+        run: uv run mypy src
+
+      - name: Run tests with coverage
+        run: uv run pytest --cov=src --cov-report=term-missing --cov-report=xml

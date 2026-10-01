@@ -6,3 +6,5 @@ __marimo__/
 .ruff_cache/
 .venv/
 dist/
+.coverage
+coverage.xml
