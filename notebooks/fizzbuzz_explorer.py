@@ -19,33 +19,63 @@ def _():
 
 
 @app.cell
-def _(mo):
-    n = mo.ui.number(start=1, stop=100, value=15, label="pick a num")
-    n
-    return (n,)
+def _():
+    from collections import Counter
+
+    return (Counter,)
 
 
 @app.cell
-def _(fizzbuzz, mo, n):
-    result = fizzbuzz(n.value)
-    mo.md(f"fizzbuzz result: {result}")
+def _():
+    import matplotlib.pyplot as plt
+
+    return (plt,)
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    mo.md("\"\"
+    # FizzBuzz Explorer
+
+    pick a range below and see how fizzbuzz groups each num in it,
+    both as a list and as a chart of the distribution of outputs.
+    This notebook used the `fizzbuzz_tdd_kata` package instead of reimplementing the function.
+    "\"\")
+    """)
     return
 
 
 @app.cell
-def _(fizzbuzz):
-    import matplotlib.pyplot as plt
+def _(mo):
+    start = mo.ui.slider(1, 200, value=1, label="range start")
 
-    values = range(1, 31)
-    results = [fizzbuzz(i) for i in values]
+    end = mo.ui.slider(1, 200, value=100, label="range end")
 
-    plt.figure(figsize=(10, 4))
-    plt.bar(values, [len(r) for r in results])
-    plt.xlabel("number")
-    plt.ylabel("length of fizzbuzz result")
-    plt.title("fizzbuzz result lengths")
-    plt.show()
-    return (plt,)
+    mo.hstack([start, end])
+    return end, start
+
+
+@app.cell
+def _(end, fizzbuzz, start):
+    lo, hi = sorted((start.value, end.value))
+    results = [fizzbuzz(n) for n in range(lo, hi + 1)]
+    results
+    return (results,)
+
+
+@app.cell
+def _(Counter, plt, results):
+    counts = Counter("number" if r.isdigit() else r for r in results)
+
+    fig, ax = plt.subplots()
+
+    ax.bar(counts.keys(), counts.values(), color=["#4c72b0", "#dd8452", "#55a868", "#c44e52"])
+    ax.set_ylabel("count")
+    ax.set_title("distribution of fizzbuzz outputs over the selected range")
+
+    fig
+    return
 
 
 @app.cell
@@ -59,23 +89,12 @@ def _(fizzbuzz, mo):
 
 
 @app.cell
-def _(fizzbuzz):
-    counts = {
-        "Fizz": sum(fizzbuzz(i) == "Fizz" for i in range(1, 31)),
-        "Buzz": sum(fizzbuzz(i) == "Buzz" for i in range(1, 31)),
-        "FizzBuzz": sum(fizzbuzz(i) == "FizzBuzz" for i in range(1, 31)),
-    }
-    counts
-    return (counts,)
+def _():
+    return
 
 
 @app.cell
-def _(counts, plt):
-    plt.bar(counts.keys(), counts.values())
-    plt.xlabel("Result")
-    plt.ylabel("count")
-    plt.title("fizzbuzz results from 1 to 30")
-    plt.show()
+def _():
     return
 
 
