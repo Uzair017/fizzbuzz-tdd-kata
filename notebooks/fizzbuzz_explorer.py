@@ -12,6 +12,17 @@ def _():
 
 
 @app.cell
+async def _():
+    import sys
+
+    if sys.platform == "emscripten":
+        import micropip
+
+        await micropip.install("/fizzbuzz_tdd_kata-0.1.0-py3-none-any.whl")
+    return
+
+
+@app.cell
 def _():
     from fizzbuzz_tdd_kata import fizzbuzz
 
@@ -34,14 +45,14 @@ def _():
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(r"""
-    mo.md("\"\"
+    mo.md("""
     # FizzBuzz Explorer
 
-    pick a range below and see how fizzbuzz groups each num in it,
+    Pick a range below and see how fizzbuzz classifies each number in it,
     both as a list and as a chart of the distribution of outputs.
-    This notebook used the `fizzbuzz_tdd_kata` package instead of reimplementing the function.
-    "\"\")
+
+    This notebook uses the `fizzbuzz_tdd_kata` package instead of reimplementing
+    the function.
     """)
     return
 

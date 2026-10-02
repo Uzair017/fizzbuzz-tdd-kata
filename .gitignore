@@ -8,3 +8,4 @@ __marimo__/
 dist/
 .coverage
 coverage.xml
+site/
