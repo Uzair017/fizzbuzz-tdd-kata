@@ -7,9 +7,15 @@ app = marimo.App(width="medium")
 @app.cell
 def _():
     import marimo as mo
+
+    return (mo,)
+
+
+@app.cell
+def _():
     from fizzbuzz_tdd_kata import fizzbuzz
 
-    return fizzbuzz, mo
+    return (fizzbuzz,)
 
 
 @app.cell
