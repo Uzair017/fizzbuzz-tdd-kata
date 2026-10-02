@@ -9,6 +9,8 @@ authors = [
 requires-python = ">=3.12"
 dependencies = []
 
+[project.scripts] #added later as part of step 10
+fizzbuzz-kata = "fizzbuzz_tdd_kata.cli:main" #added later as part of step 10
 
 
 [build-system]
