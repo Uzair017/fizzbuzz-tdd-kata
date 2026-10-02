@@ -18,7 +18,7 @@ async def _():
     if sys.platform == "emscripten":
         import micropip
 
-        await micropip.install("./fizzbuzz_tdd_kata-0.1.0-py3-none-any.whl")
+        await micropip.install("./public/fizzbuzz_tdd_kata-0.1.0-py3-none-any.whl")
     return
 
 
